@@ -2,6 +2,8 @@
 
 #include "factorial.hpp"
 
+// Write a program which calculates Factorial using classes
+
 int main() {
     Factorial p(10);
     p.calc(15);
