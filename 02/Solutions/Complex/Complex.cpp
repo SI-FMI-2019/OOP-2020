@@ -1,11 +1,17 @@
 #include "Complex.hpp"
 #include <iostream>
 
-void Complex::makeComplex(const double real, const double imaginary)
+Complex::Complex(const double real, const double imaginary)
+    : real(real)
+    , imaginary(imaginary)
 {
-    this->real = real;
-    this->imaginary = imaginary;
 }
+
+// void Complex::makeComplex(const double real, const double imaginary)
+// {
+//     this->real = real;
+//     this->imaginary = imaginary;
+// }
 
 void Complex::addComplex(const Complex& other)
 {

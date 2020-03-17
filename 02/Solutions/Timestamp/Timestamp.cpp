@@ -1,18 +1,29 @@
 #include <iostream>
 #include "Timestamp.hpp"
 
-void Timestamp::convertToTimestamp(const unsigned seconds)
+Timestamp::Timestamp(const unsigned seconds)
+    : SECONDS_IN_HOUR(3600)
+    , SECONDS_IN_MINUTE(60)
+    , hours(seconds / SECONDS_IN_HOUR)
 {
-    const unsigned SECONDS_IN_HOUR = 3600;
-    this->hours = seconds / SECONDS_IN_HOUR;
     unsigned remainingSeconds = seconds % SECONDS_IN_HOUR;
-
-    const unsigned SECONDS_IN_MINUTE = 60;
     this->minutes = remainingSeconds / SECONDS_IN_MINUTE;
-
     remainingSeconds %= SECONDS_IN_MINUTE;
     this->seconds = remainingSeconds;
 }
+
+// void Timestamp::convertToTimestamp(const unsigned seconds)
+// {
+//     const unsigned SECONDS_IN_HOUR = 3600;
+//     this->hours = seconds / SECONDS_IN_HOUR;
+//     unsigned remainingSeconds = seconds % SECONDS_IN_HOUR;
+
+//     const unsigned SECONDS_IN_MINUTE = 60;
+//     this->minutes = remainingSeconds / SECONDS_IN_MINUTE;
+
+//     remainingSeconds %= SECONDS_IN_MINUTE;
+//     this->seconds = remainingSeconds;
+// }
 
 void Timestamp::print() const
 {

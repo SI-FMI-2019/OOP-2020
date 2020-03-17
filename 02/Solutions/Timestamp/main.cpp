@@ -2,13 +2,14 @@
 #include "Timestamp.hpp"
 
 int main()
-{
-    Timestamp timestamp;
-    timestamp.convertToTimestamp(3664*20);
+{  
+    Timestamp z;
+    Timestamp timestamp(3664*20);
+    // timestamp.convertToTimestamp(3664*20);
     timestamp.print();
 
-    Timestamp other;
-    other.convertToTimestamp(20);
+    Timestamp other(20);
+    // other.convertToTimestamp(20);
     other.print();
 
     timestamp.add(other);
