@@ -1,0 +1,4 @@
+*** LOGG DEFAULT SESSION STARTED Thu Apr  2 17:21:47 2020	 *** 
+Thu Apr  2 17:21:47 2020	INFO	program got here
+Thu Apr  2 17:21:47 2020	DEBUG	8
+--- LOGG SESSION ENDED AT Thu Apr  2 17:21:47 2020	 --- 
