@@ -3,15 +3,13 @@
 //
 
 #include "Snake.h"
+#include "Game.h"
 
 Snake::Snake() : length(2) {
     this->snake_body = new Point[this->length];
 
     for (int i = 0; i < this->length; i++) {
-        // Point temp = Point(i+1, 1);
-        // this->snake_body[i] = temp;
-
-        this->snake_body[i] = Point(i + 1, 1); //Point(i+1, 1);
+        this->snake_body[i] = Point(0, i + 1); //Point(i, i+1)
     }
 }
 
@@ -58,46 +56,78 @@ void Snake::eat() {
     this->snake_body = new_snake_body;
 
     //Ще проверим, в околност на последната част от змията, дали има място
-    Point tail = this->snake_body[this->length - 1];
-
-//    Point parts_candidates[4];
-//    parts_candidates[0] = Point(tail.get_x() + 1, tail.get_y());
-//    parts_candidates[1] = Point(tail.get_x() - 1, tail.get_y());
-//    parts_candidates[2] = Point(tail.get_x(), tail.get_y() + 1);
-//    parts_candidates[3] = Point(tail.get_x(), tail.get_y() - 1);
+    Point tail = this->snake_body[this->length - 2];
 
     Point parts_candidates[4] = {
-            Point(tail.get_x() + 1, tail.get_y()),
-            Point(tail.get_x() - 1, tail.get_y()),
-            Point(tail.get_x(), tail.get_y() + 1),
-            Point(tail.get_x(), tail.get_y() - 1)
+            Point(tail.get_row() + 1, tail.get_column()),
+            Point(tail.get_row() - 1, tail.get_column()),
+            Point(tail.get_row(), tail.get_column() + 1),
+            Point(tail.get_row(), tail.get_column() - 1)
     };
 
     for (int i = 0; i < 4; i++) {
         if (!this->check_if_point_is_in_snake(parts_candidates[i])) {
-            this->snake_body[this->length] = parts_candidates[i];
-            i = 10; //Smarter break;
+            this->snake_body[this->length - 1] = parts_candidates[i];
+            //i = 10; //Smarter break;
         }
     }
 }
 
 bool Snake::check_if_point_is_in_snake(const Point &to_check) {
-    bool is_okay = true;
+    bool is_okay = false;
     for (int i = 0; i < this->length - 1; i++) {
         if (this->snake_body[i] == to_check) {
-            is_okay = false;
-            i = this->length * 10; //Умен break. Може и break, но този вариант е малко по-добър
+            is_okay = true;
+            break;
         }
     }
-
     return is_okay;
 }
 
-Point* Snake::get_positions() const
-{
+Point *Snake::get_positions() const {
     return this->snake_body;
 }
-unsigned Snake::get_length() const
-{
+
+unsigned Snake::get_length() const {
     return this->length;
+}
+
+void Snake::move(const char &direction) {
+    auto snake_position = this->snake_body[HEAD_LOCATION_INDEX]; //auto -> Point
+
+    if (Snake::check_if_move_is_inside(snake_position, direction)) {
+        for (int i = 1; i < this->length; i++) {
+            this->snake_body[i] = this->snake_body[i - 1];
+        }
+        if (direction == 'w') {
+            if (snake_position.get_row() - 1 >= 0) {
+                this->snake_body[HEAD_LOCATION_INDEX].set_row(snake_position.get_row() - 1);
+            }
+        } else if (direction == 's') {
+            if (snake_position.get_row() + 1 < Game::FIELD_ROWS) {
+                this->snake_body[HEAD_LOCATION_INDEX].set_row(snake_position.get_row() + 1);
+            }
+        } else if (direction == 'a') {
+            if (snake_position.get_column() - 1 >= 0) {
+                this->snake_body[HEAD_LOCATION_INDEX].set_column(snake_position.get_column() - 1);
+            }
+        } else if (direction == 'd') {
+            if (snake_position.get_column() + 1 < Game::FIELD_COLUMNS) {
+                this->snake_body[HEAD_LOCATION_INDEX].set_column(snake_position.get_column() + 1);
+            }
+        }
+    }
+}
+
+bool Snake::check_if_move_is_inside(const Point &location, const char &direction) {
+    if (direction == 'w') {
+        return (location.get_row() - 1 >= 0);
+    } else if (direction == 's') {
+        return (location.get_row() + 1 < Game::FIELD_ROWS);
+    } else if (direction == 'a') {
+        return (location.get_column() - 1 >= 0);
+    } else if (direction == 'd') {
+        return (location.get_column() + 1 < Game::FIELD_COLUMNS);
+    }
+    return false;
 }

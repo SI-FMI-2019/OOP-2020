@@ -9,20 +9,20 @@
 class Point {
 public:
     Point() = default; //Създава конструктор explicitly
-    Point(const unsigned& init_x, const unsigned& init_y);
+    Point(const unsigned& initial_row, const unsigned& initial_column);
 
-    void set_x(const unsigned& new_x);
-    void set_y(const unsigned& new_y);
+    void set_row(const unsigned& new_row);
+    void set_column(const unsigned& new_column);
 
-    unsigned get_x() const;
-    unsigned get_y() const;
+    unsigned get_row() const;
+    unsigned get_column() const;
 
     double get_distance_to(const Point& to);
 
     bool operator==(const Point& second);
 private:
-    unsigned x;
-    unsigned y;
+    unsigned row;
+    unsigned column;
 };
 
 

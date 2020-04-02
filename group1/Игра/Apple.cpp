@@ -9,10 +9,11 @@ Apple::Apple()
     //TODO: Fix the bug when the Apple is inside of the snake
     std::random_device rd; // obtain a random number from hardware
     std::mt19937 eng(rd()); // seed the generator
-    std::uniform_int_distribution<> x_generator(0, Game::FIELD_WIDTH); // define the range
-    std::uniform_int_distribution<> y_generator(0, Game::FIELD_HEIGHT);
+    std::uniform_int_distribution<> row_generator(3, Game::FIELD_ROWS);
+    std::uniform_int_distribution<> column_generator(0, Game::FIELD_COLUMNS); // define the range
 
-    this->position = Point(x_generator(eng), y_generator(eng));
+    //this->position = Point(row_generator(eng), column_generator(eng));
+    this->position = Point(2, 1);
 }
 Point Apple::get_position() const
 {

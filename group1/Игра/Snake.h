@@ -20,11 +20,14 @@ public:
     Point* get_positions() const;
     unsigned get_length() const;
     void eat();
+    void move(const char& direction);
 private:
 
     const int HEAD_LOCATION_INDEX = 0;
     unsigned length; //size_t = unsigned int64
     Point* snake_body;
+
+    static bool check_if_move_is_inside(const Point& location, const char& direction);
 };
 
 

@@ -4,25 +4,25 @@
 
 #include "Point.h"
 
-Point::Point(const unsigned& init_x, const unsigned& init_y): x(init_x), y(init_y) {}
+Point::Point(const unsigned& initial_row, const unsigned& initial_column): row(initial_row), column(initial_column) {}
 
-void Point::set_x(const unsigned& new_x)
+void Point::set_row(const unsigned& new_row)
 {
-    this->x = new_x;
+    this->row = new_row;
 }
-void Point::set_y(const unsigned& new_y)
+void Point::set_column(const unsigned& new_column)
 {
-    this->y = new_y;
-}
-
-unsigned Point::get_x() const
-{
-    return this->x;
+    this->column = new_column;
 }
 
-unsigned Point::get_y() const
+unsigned Point::get_row() const
 {
-    return this->y;
+    return this->row;
+}
+
+unsigned Point::get_column() const
+{
+    return this->column;
 }
 
 double Point::get_distance_to(const Point& to)
@@ -30,10 +30,10 @@ double Point::get_distance_to(const Point& to)
     //Питагорова теорема
     //sqrt - корен-квадратен
     //pow - степен
-    return sqrt(pow(to.x - this->x, 2) + pow(to.y - this->y, 2));
+    return sqrt(pow(to.row - this->row, 2) + pow(to.column - this->column, 2));
 }
 
 bool Point::operator==(const Point &second)
 {
-    return (this->x == second.x && this->y == second.y);
+    return (this->row == second.row && this->column == second.column);
 }
