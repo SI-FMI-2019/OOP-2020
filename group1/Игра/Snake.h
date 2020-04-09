@@ -15,7 +15,7 @@ public:
     Snake& operator=(const Snake& from);
     ~Snake();
 
-    bool check_if_point_is_in_snake(const Point& to_check);
+    bool check_if_point_is_in_snake(const Point& to_check, const bool& ignore_head = false) const;
     Point get_head_position() const;
     Point* get_positions() const;
     unsigned get_length() const;

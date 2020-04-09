@@ -5,11 +5,11 @@
 #include "Snake.h"
 #include "Game.h"
 
-Snake::Snake() : length(2) {
+Snake::Snake() : length(3) {
     this->snake_body = new Point[this->length];
 
     for (int i = 0; i < this->length; i++) {
-        this->snake_body[i] = Point(0, i + 1); //Point(i, i+1)
+        this->snake_body[i] = Point(1, i + 2); //Point(i, i+1)
     }
 }
 
@@ -73,9 +73,17 @@ void Snake::eat() {
     }
 }
 
-bool Snake::check_if_point_is_in_snake(const Point &to_check) {
+bool Snake::check_if_point_is_in_snake(const Point &to_check, const bool& ignore_head) const {
     bool is_okay = false;
-    for (int i = 0; i < this->length - 1; i++) {
+    //for (int i = ignore_head; i < this->length - 1; i++) { <- кратко, но нечетимо
+
+    int i = 0;
+
+    if(ignore_head)
+    {
+        i = 1;
+    }
+    for (; i < this->length - 1; i++) {
         if (this->snake_body[i] == to_check) {
             is_okay = true;
             break;
@@ -96,7 +104,8 @@ void Snake::move(const char &direction) {
     auto snake_position = this->snake_body[HEAD_LOCATION_INDEX]; //auto -> Point
 
     if (Snake::check_if_move_is_inside(snake_position, direction)) {
-        for (int i = 1; i < this->length; i++) {
+        //CHANGED HERE
+        for (int i = this->length - 1; i > 0; i--) {
             this->snake_body[i] = this->snake_body[i - 1];
         }
         if (direction == 'w') {
