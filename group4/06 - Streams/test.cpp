@@ -32,11 +32,12 @@ int main() {
     // file >> buffer; // Backup the data because when we write to the file we will destroy it later
     // std::cout << buffer;
 
+    /* file.seekg(0, std::ios::end) // Move to end of the file */
     /* file << "asd"; // This starts writing where we stopped reading with >> */
 
     /* Move the cursor inside an opened file - seekg */
     // file.seekg(0); // Go back to the start
-    // file << "asd"; // This starts writing from the start because that's where we moved the cursor
+    // file << "123"; // This starts writing from the start because that's where we moved the cursor
 
 
 }
