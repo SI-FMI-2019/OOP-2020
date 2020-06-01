@@ -11,12 +11,14 @@ public:
     BasePayment();
     BasePayment(const double& amount, const double& percentage);
 
-    void get_amount();
-    void get_percentage();
+    double get_amount() const;
+    double get_percentage() const;
 
     virtual void pay(const double& to_pay) = 0;
-private:
+
+protected:
     double amount;
+private:
     double percentage;
 };
 

@@ -14,9 +14,9 @@ public:
     enum EntityType
     {
         None,
-        Player,
-        NPC,
-        Mob
+        PlayerType,
+        NPCType,
+        MobType
     };
 
     Entity();
@@ -26,7 +26,7 @@ public:
 
     Entity(const Entity& from);
     Entity& operator=(const Entity& from);
-    ~Entity();
+    virtual ~Entity();
 
 
 
@@ -45,7 +45,7 @@ public:
 
     virtual EntityType get_type() const = 0;
 private:
-    static int counter;
+    //static int counter;
     int id;
     std::string name;
     Point2D* location;
