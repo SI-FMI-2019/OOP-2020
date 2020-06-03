@@ -6,6 +6,8 @@
 #define HOMEWORK3_2019_PLAYER_H
 
 #include "Entity.h"
+#include "Mob.h"
+#include <iostream>
 class Player: public Entity {
 public:
     Player();
@@ -17,9 +19,13 @@ public:
     int get_damage() const;
     int get_health() const;
 
+    void attack(Player& to_be_attacked);
+    //void attack(Mob& to_be_attacked);
 
+    EntityType get_type() const override;
+
+    friend class Mob;
 private:
-    Player(const int& damage, const int& health);
     int damage;
     int health;
 };

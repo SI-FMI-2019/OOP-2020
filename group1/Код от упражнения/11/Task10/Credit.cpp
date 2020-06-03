@@ -3,3 +3,8 @@
 //
 
 #include "Credit.h"
+
+void Credit::pay(const double& to_pay)
+{
+    this->BasePayment::amount += to_pay + (to_pay * this->BasePayment::get_percentage());
+}

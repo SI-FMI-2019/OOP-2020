@@ -5,9 +5,11 @@
 #ifndef TASK10_PAYMENT_H
 #define TASK10_PAYMENT_H
 
+#include "BasePayment.h"
 
-class Payment {
-
+class Payment: public BasePayment {
+public:
+    void pay(const double& to_pay) override;
 };
 
 

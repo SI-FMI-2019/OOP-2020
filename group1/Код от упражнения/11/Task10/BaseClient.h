@@ -27,6 +27,7 @@ public:
 
     std::string get_name() const;
     std::string get_address() const;
+    virtual BasePayment* get_main_payment() const = 0;
     const std::vector<BasePayment*> get_payments() const;
 private:
     std::string name;

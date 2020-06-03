@@ -3,3 +3,7 @@
 //
 
 #include "Deposit.h"
+
+void Deposit::pay(const double &to_pay) {
+    this->BasePayment::amount -= amount;
+}

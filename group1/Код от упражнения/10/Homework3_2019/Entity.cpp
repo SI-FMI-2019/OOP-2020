@@ -6,16 +6,16 @@
 
 Entity::Entity(): name("")
 {
-    Entity::counter += 1;
-    this->id = Entity::counter;
+    //Entity::counter = 1;
+    this->id = 1;
     this->location = new Point2D();
     this->type = EntityType::None;
 }
 
 Entity::Entity(const Entity& from)
 {
-    Entity::counter += 1;
-    this->id = Entity::counter;
+    //Entity::counter += 1;
+    this->id = 1;
 
     this->name = from.name;
     this->type = from.type;
@@ -35,6 +35,8 @@ Entity& Entity::operator=(const Entity& from)
     {
         delete this->location;
 
+        //Entity::counter++;
+        this->id = 1;
         this->name = from.name;
         this->type = from.type;
 
@@ -56,8 +58,8 @@ Entity::~Entity()
 
 Entity::Entity(const std::string& name, const Point2D& location)
 {
-    Entity::counter += 1;
-    this->id = Entity::counter;
+    //Entity::counter += 1;
+    this->id = 1;
 
     this->name = name;
     this->location = new Point2D(location);
@@ -65,8 +67,8 @@ Entity::Entity(const std::string& name, const Point2D& location)
 
 Entity::Entity(const std::string& name, const Point3D& location)
 {
-    Entity::counter += 1;
-    this->id = Entity::counter;
+    //Entity::counter += 1;
+    this->id = 1;
 
     this->name = name;
     this->location = new Point3D(location);
