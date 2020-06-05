@@ -114,6 +114,33 @@ public:
         vector::push_back(car);
     }
 
+    PolymorphicVector() = default; // Nothing special to do here
+
+    PolymorphicVector(const PolymorphicVector& rhs) {
+        // Copy the pointers by making clones
+        for (int i = 0; i < rhs.size(); i++) {
+            this->push_back(rhs.at(i)->clone());
+        }
+    }
+
+    PolymorphicVector& operator=(const PolymorphicVector& rhs) {
+        if (this != &rhs) {
+            // Destructor logic
+            for (int i = 0; i < this->size(); i++) {
+                delete this->at(i);
+            }
+
+            // Remove the old pointers from the vector (set size to 0)
+            vector::clear();
+
+            // Copy constructor logic
+            for (int i = 0; i < rhs.size(); i++) {
+                this->push_back(rhs.at(i)->clone());
+            }
+        }
+        return *this;
+    }
+
     ~PolymorphicVector() {
         // VERY IMPORTANT to use custom destructor
         for (int i = 0; i < this->size(); i++) {
