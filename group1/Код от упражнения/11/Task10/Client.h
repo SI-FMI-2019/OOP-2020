@@ -28,6 +28,8 @@ public:
     std::string get_phone_number() const;
 
     BasePayment* get_main_payment() const override;
+
+    virtual ~Client() = default;
 private:
     std::string last_name;
     std::string phone_number;

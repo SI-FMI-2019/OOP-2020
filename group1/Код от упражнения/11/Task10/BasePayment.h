@@ -16,6 +16,7 @@ public:
 
     virtual void pay(const double& to_pay) = 0;
 
+    virtual ~BasePayment() = default;
 protected:
     double amount;
 private:
